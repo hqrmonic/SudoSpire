@@ -14,16 +14,19 @@ def from_string(s: str) -> GameState:
     exhaust = parse_cards(sections[3])
     player_hp = int(sections[4])
     player_max_hp = int(sections[5])
-    gold = int(sections[6])
-    player_block = int(sections[7])
-    energy = int(sections[8])
-    max_energy = int(sections[9])
-    player_powers = parse_powers(sections[10])
-    relics = parse_relics(sections[11])
-    potions = parse_potions(sections[12])
-    enemies = parse_enemies(sections[13])
-    turn_number = int(sections[14])
-    turn_counters = parse_turn_counters(sections[15])
+    osty_hp = int(sections[6])
+    osty_max_hp = int(sections[7])
+    gold = int(sections[8])
+    player_block = int(sections[9])
+    energy = int(sections[10])
+    max_energy = int(sections[11])
+    stars = int(sections[12])
+    player_powers = parse_powers(sections[13])
+    relics = parse_relics(sections[14])
+    potions = parse_potions(sections[15])
+    enemies = parse_enemies(sections[16])
+    turn_number = int(sections[17])
+    turn_counters = parse_turn_counters(sections[18])
     return GameState(
         hand=hand,
         draw=draw,
@@ -31,10 +34,13 @@ def from_string(s: str) -> GameState:
         exhaust=exhaust,
         player_hp=player_hp,
         player_max_hp=player_max_hp,
+        osty_hp=osty_hp,
+        osty_max_hp=osty_max_hp,
         gold=gold,
         player_block=player_block,
         energy=energy,
         max_energy=max_energy,
+        stars=stars,
         player_powers=player_powers,
         relics=relics,
         potions=potions,
@@ -44,6 +50,7 @@ def from_string(s: str) -> GameState:
     )
 
 def to_string(state: GameState) -> str:
+    if state.pending_choice is not None: raise ValueError("In middle of pending choice")
     sections = [
         serialize_cards(state.hand),
         serialize_cards(state.draw),
@@ -51,10 +58,13 @@ def to_string(state: GameState) -> str:
         serialize_cards(state.exhaust),
         str(state.player_hp),
         str(state.player_max_hp),
+        str(state.osty_hp),
+        str(state.osty_max_hp),
         str(state.gold),
         str(state.player_block),
         str(state.energy),
         str(state.max_energy),
+        str(state.stars),
         serialize_powers(state.player_powers),
         serialize_relics(state.relics),
         serialize_potions(state.potions),

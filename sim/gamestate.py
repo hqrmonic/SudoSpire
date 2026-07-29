@@ -4,6 +4,11 @@ from .relics import Relic
 from .potions import Potion
 from .enemies import Enemy
 
+@dataclass(frozen=True)
+class PendingChoice:
+    kind: str
+    cards: tuple[Card, ...]
+
 @dataclass
 class GameState:
     hand: tuple[Card, ...]
@@ -13,10 +18,13 @@ class GameState:
 
     player_hp: int
     player_max_hp: int
+    osty_hp: int
+    osty_max_hp: int
     gold: int
     player_block: int
     energy: int
     max_energy: int
+    stars: int
 
     player_powers: tuple[tuple[str, int], ...]
     relics:tuple[Relic, ...]
@@ -26,3 +34,5 @@ class GameState:
     turn_number: int
     turn_counters: tuple[tuple[str, int], ...]
     #Turn counters tracks how many attacks, skills, powers, exhausting cards played this turn, and number of cards discarded.
+
+    pending_choice: PendingChoice | None = None
