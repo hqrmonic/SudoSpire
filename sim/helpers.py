@@ -1,7 +1,7 @@
 from .card import Card
 from .enemies import Enemy
 from . import constants as const
-
+from typing import TypeVar
 
 def get_pair(bag: tuple[tuple[str, int], ...], key: str) -> int:
     for name, val in bag:
@@ -28,14 +28,17 @@ def add_power(powers: tuple[tuple[str, int], ...], key: str, delta: int) -> tupl
 def add_counter(counters: tuple[tuple[str, int], ...], key: str, delta: int) -> tuple[tuple[str, int], ...]:
     return set_counter(counters, key, get_pair(counters, key) + delta)
 
-def add_to(pile: tuple[Card, ...], card: Card) -> tuple: 
-    return pile + (card,)
+T = TypeVar("T")
+def add_to(items: tuple[T, ...], obj: T) -> tuple[T, ...]:
+    return items + (obj,)
 
-def remove_at(pile: tuple[Card, ...], ind: int) -> tuple: 
-    return pile[:ind] + pile[ind+1:]
+T = TypeVar("T")
+def remove_at(items: tuple[T, ...], ind: int) -> tuple[T, ...]: 
+    return items[:ind] + items[ind+1:]
 
-def replace_at(pile: tuple[Card, ...], ind: int, new_card: Card) -> tuple: 
-    return pile[:ind] + (new_card,) + pile[ind+1:]
+T = TypeVar("T")
+def replace_at(items: tuple[T, ...], ind: int, obj) -> tuple[T, ...]: 
+    return items[:ind] + (obj,) + items[ind+1:]
 
 def find_enemy_inds(enemies: tuple[Enemy | None, ...]) -> tuple[int, ...]: 
     inds = []
