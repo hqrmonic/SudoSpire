@@ -40,6 +40,14 @@ T = TypeVar("T")
 def replace_at(items: tuple[T, ...], ind: int, obj) -> tuple[T, ...]: 
     return items[:ind] + (obj,) + items[ind+1:]
 
+T = TypeVar("T")
+def find_item_indices(items: tuple[T, ...], str) -> tuple[int, ...]: 
+    list = []
+    for index, item in enumerate(items):
+        if item.name == str:
+            list.append(index)
+    return list
+
 def find_enemy_inds(enemies: tuple[Enemy | None, ...]) -> tuple[int, ...]: 
     inds = []
     for i in range(const.MAX_ENEMIES):
