@@ -14,6 +14,7 @@ class Event(StrEnum):
     ON_ENEMY_DAMAGE = auto()
     ON_TURN_START = auto()
     ON_TURN_END = auto()
+    ON_OSTY_ATTACK = auto()
 
 
     ### unsure if combat start should be a state yet. Could be used in the future but any position implemented hypothetically already has started combat?
@@ -26,8 +27,8 @@ class Event(StrEnum):
     #query states
     GET_CARD_COST = auto()
     CAN_PLAY = auto()
-    CALCULATE_DAMAGE = auto()
-    GAIN_BLOCK = auto()
+    GET_DAMAGE = auto()
+    GET_BLOCK = auto()
     APPLY_DEBUFF_GIVEN = auto()
     APPLY_DEBUFF_RECIEVED = auto()
     TURN_START_BLOCKK = auto()
