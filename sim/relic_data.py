@@ -22,5 +22,5 @@ def vambrace(state, value, relic=None, source=None, **kwargs) -> int:
         return value * 2
     return value
 
-register(RELIC_QUERY_OVER, "Vambrace", Event.GAIN_BLOCK, vambrace)
+register(RELIC_QUERY_OVER, "Vambrace", Event.GET_BLOCK, vambrace)
 register(RELIC_EMIT, "Vambrace", Event.ON_BLOCK_GAINED, vambrace_commit)

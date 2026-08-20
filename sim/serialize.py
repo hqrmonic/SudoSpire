@@ -7,7 +7,7 @@ from . import constants as const
 
 def from_string(s: str) -> GameState:
     sections = s.split("/")
-    if(len(sections) != 16): raise ValueError("too many args in gamestate string")
+    if(len(sections) != 19): raise ValueError("too many args in gamestate string")
     hand = parse_cards(sections[0])
     draw = parse_cards(sections[1])
     discard = parse_cards(sections[2])

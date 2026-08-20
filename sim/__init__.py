@@ -1,1 +1,1 @@
-import card_data, relic_data, power_data, potion_data
+from . import card_data, relic_data, power_data, potion_data
